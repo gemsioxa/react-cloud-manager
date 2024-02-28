@@ -1,27 +1,26 @@
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './routes/Home'
-import Error from './routes/Error'
-import Sidebar from './components/sidebar'
-import DragZone from './components/dragZone'
-import Settings from './routes/Settings'
+import "./App.css";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import Home from "./routes/Home";
+import Error from "./routes/Error";
+import Settings from "./routes/Settings";
+import RootLayout from "./routes/RootLayout";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home />} />
+      <Route path="/settings" element={<Settings />} />
+      {/* <Route path="*" element={<Error />} /> */}
+    </Route>
+  )
+);
 function App() {
-  return (
-    <BrowserRouter>
-      <div className='app'>
-        <DragZone />
-        <Sidebar />
-        <div className='app__main'>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/settings' element={<Settings />} />
-            <Route path='*' element={<Error />} />
-          </Routes>
-        </div>
-      </div>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
