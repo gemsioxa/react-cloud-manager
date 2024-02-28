@@ -6,16 +6,17 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Home from "./routes/Home";
-import Error from "./routes/Error";
 import Settings from "./routes/Settings";
 import RootLayout from "./routes/RootLayout";
+import Disk from "./routes/Disk";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
+      <Route path="/disk/:id" element={<Disk />} />
       <Route path="/settings" element={<Settings />} />
-      {/* <Route path="*" element={<Error />} /> */}
+      <Route path="*" element={<Home />} />
     </Route>
   )
 );

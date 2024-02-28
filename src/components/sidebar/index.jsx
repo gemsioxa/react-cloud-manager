@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 import LogoIcon from "../icon/logo";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 export default function Sidebar() {
   return (
     <div className="sidebar">
@@ -10,17 +11,23 @@ export default function Sidebar() {
           <LogoIcon className="sidebar__main-logo" />
         </Link>
         <div className="sidebar__main__controls">
-          <div className="sidebar__main__controls-item sidebar__main__controls-item_active">
-            Item
-          </div>
-          <div className="sidebar__main__controls-item">Item</div>
-          <div className="sidebar__main__controls-item">Item</div>
-          <div className="sidebar__main__controls-item">Item</div>
+          <NavLink to={"/disk/1"} className="sidebar__main__controls-item">
+            D1
+          </NavLink>
+          <NavLink to={"/disk/2"} className="sidebar__main__controls-item">
+            D2
+          </NavLink>
+          <NavLink to={"/disk/3"} className="sidebar__main__controls-item">
+            D3
+          </NavLink>
+          <NavLink to={"/disk/4"} className="sidebar__main__controls-item">
+            D4
+          </NavLink>
         </div>
       </div>
       <div className="sidebar__controls">
         <div className="sidebar__controls-settings">
-          <Link to={"/settings"}>Settings</Link>
+          <NavLink to={"/settings"}>Settings</NavLink>
         </div>
         <div className="sidebar__controls-version">v. 0.0.1</div>
       </div>

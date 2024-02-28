@@ -45,11 +45,11 @@
     background-color: var(--hover);
 }
 
-.sidebar__main__controls-item_active {
+.active {
     background-color: var(--trunks);
 }
 
-.sidebar__main__controls-item_active:hover {
+.active:hover {
     background-color: var(--trunks);
 }
 
