@@ -1,14 +1,9 @@
 import { app, ipcMain } from 'electron'
 import { createRequire } from 'node:module'
-import type {
-  ProgressInfo,
-  UpdateDownloadedEvent,
-  UpdateInfo,
-} from 'electron-updater'
 
 const { autoUpdater } = createRequire(import.meta.url)('electron-updater');
 
-export function update(win: Electron.BrowserWindow) {
+export function update(win) {
 
   // When set to false, the update download will be triggered through the API
   autoUpdater.autoDownload = false
@@ -18,11 +13,11 @@ export function update(win: Electron.BrowserWindow) {
   // start check
   autoUpdater.on('checking-for-update', function () { })
   // update available
-  autoUpdater.on('update-available', (arg: UpdateInfo) => {
+  autoUpdater.on('update-available', (arg) => {
     win.webContents.send('update-can-available', { update: true, version: app.getVersion(), newVersion: arg?.version })
   })
   // update not available
-  autoUpdater.on('update-not-available', (arg: UpdateInfo) => {
+  autoUpdater.on('update-not-available', (arg) => {
     win.webContents.send('update-can-available', { update: false, version: app.getVersion(), newVersion: arg?.version })
   })
 
@@ -41,7 +36,7 @@ export function update(win: Electron.BrowserWindow) {
   })
 
   // Start downloading and feedback on progress
-  ipcMain.handle('start-download', (event: Electron.IpcMainInvokeEvent) => {
+  ipcMain.handle('start-download', (event) => {
     startDownload(
       (error, progressInfo) => {
         if (error) {
@@ -66,11 +61,11 @@ export function update(win: Electron.BrowserWindow) {
 }
 
 function startDownload(
-  callback: (error: Error | null, info: ProgressInfo | null) => void,
-  complete: (event: UpdateDownloadedEvent) => void,
+  callback,
+  complete,
 ) {
-  autoUpdater.on('download-progress', (info: ProgressInfo) => callback(null, info))
-  autoUpdater.on('error', (error: Error) => callback(error, null))
+  autoUpdater.on('download-progress', (info) => callback(null, info))
+  autoUpdater.on('error', (error) => callback(error, null))
   autoUpdater.on('update-downloaded', complete)
   autoUpdater.downloadUpdate()
 }

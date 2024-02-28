@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, Menu } from 'electron'
 import { release } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -39,7 +39,7 @@ if (!app.requestSingleInstanceLock()) {
 // Read more on https://www.electronjs.org/docs/latest/tutorial/security
 // process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
-let win: BrowserWindow | null = null
+let win = null
 // Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.mjs')
 const url = process.env.VITE_DEV_SERVER_URL
@@ -47,7 +47,7 @@ const indexHtml = join(process.env.DIST, 'index.html')
 
 async function createWindow() {
   win = new BrowserWindow({
-    title: 'Main window',
+    title: 'Cloud Manager',
     icon: join(process.env.VITE_PUBLIC, 'favicon.ico'),
     minHeight: 720,
     minWidth: 1280,
@@ -56,7 +56,7 @@ async function createWindow() {
     titleBarStyle: 'hiddenInset',
     webPreferences: {
       preload,
-      devTools: url ? true: false
+      devTools: url ? true: false,
       // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
       // nodeIntegration: true,
 
@@ -65,6 +65,43 @@ async function createWindow() {
       // contextIsolation: false,
     },
   })
+
+  const template = [
+    {
+      label: 'Cloud manager',
+      submenu: [
+        {
+          label: 'О приложении',
+          click() { win.webContents.send("about"); }
+        },
+        {
+          label: 'Пользовательское соглашение',
+          click() { win.webContents.send("agreement"); }          
+        },
+        { type: 'separator' },
+        {
+          label: 'Закрыть приложение',
+          click() { win.webContents.send("exit"); }
+      },
+      ]
+    },
+    {
+      label: 'Правка',
+      submenu: [
+        {
+          label: 'Что-то',
+          click () { win.webContents.send("something"); }
+        },
+        {
+          label: 'Где-то',
+          click () { win.webContents.send("somewhere"); }          
+        }
+      ]
+    }
+  ]
+
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu);
 
   if (url) { // electron-vite-vue#298
     win.loadURL(url)
@@ -90,6 +127,10 @@ async function createWindow() {
 }
 
 app.whenReady().then(createWindow)
+
+app.on('ready', () => {
+
+})
 
 app.on('window-all-closed', () => {
   win = null
@@ -129,4 +170,3 @@ ipcMain.handle('open-win', (_, arg) => {
     childWindow.loadFile(indexHtml, { hash: arg })
   }
 })
-
