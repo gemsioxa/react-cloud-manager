@@ -1,0 +1,9 @@
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 22fr;
+}
+
+.app__main {
+  padding-top: 36px;
+}

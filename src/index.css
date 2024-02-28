@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  height: 100vh;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+
+  --krillin-100: #FFB319;
+  --krillin-60: #FFC652;
+  --krillin-10: #FFD98D;
+
+  --chi-chi-100: #FF4E64;
+  --chi-chi-60: #FF7687;
+  --chi-chi-10: #FF96A3;
+
+  --roshi-100: #4AD15F;
+  --roshi-60: #64DC77;
+  --roshi-10: #7FF291;
+
+  --dodoria-100: #D33030;
+  --dodoria-10: #F06767;
+
+  --cell-100: #95F1D5;
+  --cell-60: #A2FADF;
+  --cell-10: #BFFFEC;
+
+  --raditz-100: #B3804A;
+  --raditz-60: #C1915D;
+  --raditz-10: #D6A979;
+
+  --whis-100: #3448F0;
+  --whis-60: #6777F8;
+  --whis-10: #8490F9;
+
+  --frieza-100: #5C33CF;
+  --frieza-60: #734DDE;
+  --frieza-10: #9271EF;
+
+  --nappa-100: #725550;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: var(--goku);
+
+    --ghost: #4E46B412;
+    --hover: #00000008;
+    --goku: #F5F5F5;
+    --gohan: #FFFFFF;
+    --backdrop: #00000056;
+    --bulma: #000000;
+    --trunks: #999CA0;
+    --goten: #FFFFFF;
+    --popo: #000000;
+
+    --piccolo: #4E46B4;
+    --piccolo-hover: color-mix(in srgb, var(--piccolo) 100%, #000000 8%);
+
+    --hit: #40A69F;
+    --hit-hover: color-mix(in srgb, var(--hit) 100%, #FFFFFF 12%);
+
+    --beerus: #EBEBEB;
+    --beerus-hover: color-mix(in srgb, var(--beerus) 100%, #000000 8%);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: var(--goku);
+
+    --ghost: #4E46B412;
+    --hover: #FFFFFF;
+    --goku: #0B0B0B;
+    --gohan: #1F1F1F;
+    --backdrop: #00000056;
+    --bulma: #FFFFFF;
+    --trunks: #999CA0;
+    --goten: #FFFFFF;
+    --popo: #000000;
+
+    --piccolo: #4E46B4;
+    --piccolo-hover: color-mix(in srgb, var(--piccolo) 100%, #000000 8%);
+
+    --hit: #40A69F;
+    --hit-hover: color-mix(in srgb, var(--hit) 100%, #FFFFFF 12%);
+
+    --beerus: #444444;
+    --beerus-hover: color-mix(in srgb, #1F1F1F 100%, #FFFFFF 12%);
+  }
+}
