@@ -6,7 +6,7 @@ import DragZone from "../components/dragZone";
 export default function RootLayout() {
   return (
     <div className="app">
-      <DragZone />
+      {/* <DragZone /> */}
       <Sidebar />
       <div />
       <div className="app__main">

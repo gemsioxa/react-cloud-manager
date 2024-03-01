@@ -1,9 +1,8 @@
 .container {
     display: grid;
-    width: 100%;
     height: 100vh;
     position: fixed;
-    grid-template-columns: 2fr 22fr;
+    grid-template-columns: 72px;
 }
 
 .sidebar {
@@ -43,7 +42,7 @@
 
 .sidebar__main__controls-item {
     cursor: pointer;
-    user-select: none;
+    /* user-select: none; */
     display: flex;
     align-items: center;
     justify-content: center;

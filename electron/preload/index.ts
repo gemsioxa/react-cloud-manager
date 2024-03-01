@@ -65,10 +65,11 @@ function useLoading() {
   75% { transform: perspective(100px) rotateX(0) rotateY(180deg); }
   100% { transform: perspective(100px) rotateX(0) rotateY(0); }
 }
-.${className} > div {
+.${className} > img {
   animation-fill-mode: both;
   width: 50px;
   height: 50px;
+  border-radius: 50%;
   background: #fff;
   animation: square-spin 3s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
 }
@@ -91,7 +92,7 @@ function useLoading() {
   oStyle.id = 'app-loading-style'
   oStyle.innerHTML = styleContent
   oDiv.className = 'app-loading-wrap'
-  oDiv.innerHTML = `<div class="${className}"><div></div></div>`
+  oDiv.innerHTML = `<div class="${className}"><img src="https://endlessicons.com/wp-content/uploads/2012/11/loading-icon-614x460.png"/></div>`
 
   return {
     appendLoading() {
