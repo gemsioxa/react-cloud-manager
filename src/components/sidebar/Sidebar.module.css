@@ -45,14 +45,6 @@
     background-color: var(--hover);
 }
 
-.active {
-    background-color: var(--trunks);
-}
-
-.active:hover {
-    background-color: var(--trunks);
-}
-
 .sidebar__controls {
     display: flex;
     flex-direction: column;

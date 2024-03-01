@@ -1,35 +1,36 @@
 import React from "react";
-import "./style.css";
 import LogoIcon from "../icon/logo";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import SidebarCss from './Sidebar.module.css';
+
 export default function Sidebar() {
   return (
-    <div className="sidebar">
-      <div className="sidebar__main">
+    <div className={SidebarCss.sidebar}>
+      <div className={SidebarCss.sidebarMain}>
         <Link to={"/"}>
-          <LogoIcon className="sidebar__main-logo" />
+          <LogoIcon className={SidebarCss.sidebarMainLogo} />
         </Link>
-        <div className="sidebar__main__controls">
-          <NavLink to={"/disk/1"} className="sidebar__main__controls-item">
+        <div className={SidebarCss.sidebarMainControls}>
+          <NavLink to={"/disk/1"} className={SidebarCss.sidebarMainControlsItem}>
             D1
           </NavLink>
-          <NavLink to={"/disk/2"} className="sidebar__main__controls-item">
+          <NavLink to={"/disk/2"} className={SidebarCss.sidebarMainControlsItem}>
             D2
           </NavLink>
-          <NavLink to={"/disk/3"} className="sidebar__main__controls-item">
+          <NavLink to={"/disk/3"} className={SidebarCss.sidebarMainControlsItem}>
             D3
           </NavLink>
-          <NavLink to={"/disk/4"} className="sidebar__main__controls-item">
+          <NavLink to={"/disk/4"} className={SidebarCss.sidebarMainControlsItem}>
             D4
           </NavLink>
         </div>
       </div>
-      <div className="sidebar__controls">
-        <div className="sidebar__controls-settings">
+      <div className={SidebarCss.sidebarControls}>
+        <div className={SidebarCss.sidebarControlsSettings}>
           <NavLink to={"/settings"}>Settings</NavLink>
         </div>
-        <div className="sidebar__controls-version">v. 0.0.1</div>
+        <div className={SidebarCss.sidebarControlsVersion}>v. 0.0.1</div>
       </div>
     </div>
   );
