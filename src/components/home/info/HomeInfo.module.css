@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+.block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+
+    &__image {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+
+        & img {
+            width: 50%;
+            box-sizing: border-box;
+            border: 2px solid var(--piccolo);
+            border-radius: 8px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        justify-content: flex-start;
+        width: 50%;
+
+    }
+
+}

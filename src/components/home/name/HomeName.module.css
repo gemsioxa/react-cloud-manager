@@ -1,0 +1,24 @@
+.name {
+    padding-top: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__title {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--piccolo);
+    }
+
+    &__image {
+        display: flex;
+        justify-content: center;
+        padding: 25px;
+        border: 4px solid var(--piccolo);
+        border-radius: 8px;
+    
+        &-item {
+            width: 50%;
+        }
+    }
+}

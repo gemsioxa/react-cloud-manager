@@ -8,6 +8,7 @@ export default function RootLayout() {
     <div className="app">
       <DragZone />
       <Sidebar />
+      <div />
       <div className="app__main">
         <Outlet />
       </div>
