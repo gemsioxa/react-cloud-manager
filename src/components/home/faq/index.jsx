@@ -18,10 +18,12 @@ const options = [
   },
 ];
 
-export default function HomeFAQ(props) {
+export default function HomeFAQ() {
   return (
-    <div className={HomeCss.homeBlock}>
-      FAQ
+    <div className={[HomeCss.homeBlock, HomeFAQCss.faq].join(' ')}>
+      <div className={HomeFAQCss.faqTitle}>
+        FAQ
+      </div>
       <UI.Accordion options={options} />
     </div>
   );

@@ -1,0 +1,40 @@
+.background {
+    position: absolute;
+    z-index: 1001;
+    background-color: var(--ghost);
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+}
+
+.delete {
+    cursor: default;
+    position: relative;
+    top: 50%;
+    left: calc(50% + 36px);
+    transform: translate(-50%, -50%);
+    width: 320px;
+    gap: 12px;
+    
+    &__header {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        user-select: none;
+    }
+
+    &__main {
+        user-select: none;
+        & span { 
+            font-weight: bold;
+        }
+    }
+
+    &__controls {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+}

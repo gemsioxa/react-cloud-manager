@@ -1,0 +1,82 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.cloud {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &__header {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    &__sub-header {
+        font-weight: bold;
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25%;
+    }
+
+    &__disk-plug {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            &-item {
+                padding: 4px 8px;
+                box-shadow: 0 0 4px 0 var(--backdrop);
+                border-radius: 8px;
+                display: flex;
+                gap: 24px;
+                justify-content: space-between;
+                user-select: none;
+
+                &-icon {
+                    cursor: pointer;
+                    fill: var(--bulma);
+                }
+            }
+        }
+    }
+
+    &__disk-manage {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            &-item {
+                padding: 4px 8px;
+                box-shadow: 0 0 4px 0 var(--backdrop);
+                border-radius: 8px;
+                display: flex;
+                justify-content: space-between;
+                gap: 24px;
+                user-select: none;
+
+                &-icon {
+                    cursor: pointer;
+                    
+                    & path {
+                        fill: var(--bulma);
+                    }
+                }
+            }
+        }
+    }
+}

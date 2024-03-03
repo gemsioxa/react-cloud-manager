@@ -4,10 +4,15 @@
     background-color: var(--piccolo);
     padding: 8px 12px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px 0 var(--piccolo);
-    color: var(--gohan);
+    box-shadow: 0 0 2px 0 var(--piccolo);
+    color: var(--goten);
+    font-weight: bold;
 }
 
 .button:hover {
     background-color: var(--piccolo-hover);
+}
+
+.button:active {
+    box-shadow: 0 0 6px 0 var(--piccolo);
 }

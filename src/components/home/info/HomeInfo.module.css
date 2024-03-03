@@ -14,11 +14,15 @@
         width: 100%;
         justify-content: center;
 
-        & img {
+        & svg {
             width: 50%;
+            height: 50%;
             box-sizing: border-box;
-            border: 2px solid var(--piccolo);
             border-radius: 8px;
+
+            & path, & circle {
+                stroke: var(--bulma);
+            }
         }
     }
 

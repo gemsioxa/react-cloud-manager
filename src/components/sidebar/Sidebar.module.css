@@ -16,47 +16,74 @@
     justify-content: space-between;
     align-items: center;
     background-color: var(--gohan);
-}
 
-.sidebar__main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-}
+    &__main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
 
-.sidebar__main-logo {
-    width: 32px;
-    height: 32px;
-}
+        &-logo {
+            width: 32px;
+            height: 32px;
 
-.sidebar__main-logo path {
-    stroke: var(--piccolo);
-}
+            & path {
+                stroke: var(--piccolo);
+            }
+        }
 
-.sidebar__main__controls {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+        &__controls {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
 
-.sidebar__main__controls-item {
-    cursor: pointer;
-    /* user-select: none; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 8px;
-}
+            &-item {
+                text-decoration: none;
+                color: var(--bulma);
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 56px;
+                height: 56px;
+                border-radius: 8px;
 
-.sidebar__main__controls-item:hover {
-    background-color: var(--hover);
-}
+                &:hover {
+                    background-color: var(--goku);
+                }
 
-.sidebar__controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+                &:active {
+                    background-color: var(--ghost);
+                }
+            }
+        }
+    }
+
+    &__controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__settings {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            
+            & circle, & path {
+                stroke: var(--bulma);
+            }
+
+            &:hover {
+                background-color: var(--goku);
+            }
+
+            &:active {
+                background-color: var(--ghost);
+            }
+        }
+    }
 }

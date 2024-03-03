@@ -1,12 +1,12 @@
 .app {
-  height: 100%;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 72px 22fr;
 }
 
-/* .app__main {
-  padding-top: 36px;
-} */
+.app__main {
+  min-height: 100%;
+}
 
 ::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */

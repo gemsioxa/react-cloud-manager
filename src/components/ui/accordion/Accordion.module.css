@@ -17,6 +17,7 @@
             padding: 8px 12px;
             cursor: pointer;
             &-icon {
+                fill: var(--bulma);
                 animation-duration: 1.5s;
                 animation-name: closeItem;
                 animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);

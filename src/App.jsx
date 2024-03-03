@@ -6,7 +6,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Home from "./routes/home";
-import Settings from "./routes/Settings";
+import Settings from "./routes/settings";
 import RootLayout from "./routes/RootLayout";
 import Disk from "./routes/Disk";
 
