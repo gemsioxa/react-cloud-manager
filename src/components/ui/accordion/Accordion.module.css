@@ -1,0 +1,55 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--goku);
+    box-shadow: 0 0 4px 0 var(--backdrop);
+ 
+    &__item {
+        display: flex;
+        flex-direction: column;
+
+        &-title {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            &-icon {
+                animation-duration: 1.5s;
+                animation-name: closeItem;
+                animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+                &_active {
+                    animation-duration: 1.5s;
+                    animation-name: openItem;
+                    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+                    rotate: 135deg;
+                }
+            }
+        }
+        
+        &-text {
+            padding: 8px 12px;
+            background-color: var(--gohan);
+        }
+    }
+}
+
+@keyframes openItem {
+    0% {
+        rotate: 0deg;
+    }
+    100% {
+        rotate: 135deg;
+    }
+}
+@keyframes closeItem {
+    0% {
+        rotate: 135deg;
+    }
+    100% {
+        rotate: 0deg;
+    }
+}
