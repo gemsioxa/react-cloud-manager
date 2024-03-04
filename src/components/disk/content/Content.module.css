@@ -1,0 +1,28 @@
+.content {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: auto;
+    padding: 24px;
+
+    &_item {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        user-select: none;
+        text-align: center;
+        width: max-content;
+        height: max-content;
+        padding: 8px;
+        border-radius: 8px;
+        
+
+        &:hover {
+            background-color: var(--ghost);
+        }
+
+        & svg {
+            width: 90px;
+            height: 60px;
+        }
+    }
+}

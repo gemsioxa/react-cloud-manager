@@ -8,7 +8,7 @@ import {
 import Home from "./routes/home";
 import Settings from "./routes/settings";
 import RootLayout from "./routes/RootLayout";
-import Disk from "./routes/Disk";
+import Disk from "./routes/disk";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

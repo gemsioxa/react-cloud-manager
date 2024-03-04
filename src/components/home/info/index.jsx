@@ -21,10 +21,12 @@ export default function HomeInfo(props) {
             using this app.
           </div>
           <div className={HomeInfoCss.blockInfoButton}>
-            <UI.Button
-              title={"Узнать больше"}
-              onClick={() => console.log("clicked")}
-            />
+            <a href="#faq">
+              <UI.Button
+                title={"Узнать больше"}
+                onClick={() => console.log("clicked")}
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -38,10 +40,12 @@ export default function HomeInfo(props) {
             using this app.
           </div>
           <div className={HomeInfoCss.blockInfoButton}>
-            <UI.Button
-              title={"Узнать больше"}
-              onClick={() => console.log("clicked")}
-            />
+            <a href="#faq">
+              <UI.Button
+                title={"Узнать больше"}
+                onClick={() => console.log("clicked")}
+              />
+            </a>
           </div>
         </div>
         <div className={HomeInfoCss.blockImage}>

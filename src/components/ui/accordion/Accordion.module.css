@@ -3,7 +3,7 @@
     flex-direction: column;
     border-radius: 8px;
     overflow: hidden;
-    background-color: var(--goku);
+    background-color: var(--gohan);
     box-shadow: 0 0 4px 0 var(--backdrop);
  
     &__item {
@@ -32,8 +32,9 @@
         }
         
         &-text {
+            border-top: 1px solid var(--ghost);
+            border-bottom: 1px solid var(--ghost);
             padding: 8px 12px;
-            background-color: var(--gohan);
         }
     }
 }

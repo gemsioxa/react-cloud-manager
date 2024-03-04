@@ -1,0 +1,32 @@
+.controls {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+    background-color: var(--gohan);
+    box-shadow: 0 0 4px 0 var(--backdrop);
+    
+    &__title {
+
+    }
+    &__list {
+        display: flex;
+        gap: 12px;
+        
+        &-item {
+            user-select: none;
+            cursor: pointer;
+            padding: 4px 12px;
+            border-radius: 8px;
+            box-shadow: 0 0 2px 0 var(--backdrop);
+    
+            &:hover {
+                background-color: var(--hover);
+            }
+    
+            &:active {
+                background-color: var(--ghost);
+            }
+        }
+    }
+}

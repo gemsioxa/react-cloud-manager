@@ -20,7 +20,7 @@ const options = [
 
 export default function HomeFAQ() {
   return (
-    <div className={[HomeCss.homeBlock, HomeFAQCss.faq].join(' ')}>
+    <div id="faq" className={[HomeCss.homeBlock, HomeFAQCss.faq].join(' ')}>
       <div className={HomeFAQCss.faqTitle}>
         FAQ
       </div>
