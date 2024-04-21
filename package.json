@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "main": "dist-electron/main/index.js",
   "description": "Cloud manager",
-  "author": "gemsioxa@gmail.com",
+  "author": {
+    "name": "Dmitriy Lebedev",
+    "email": "gemsioxa@gmail.com"
+  },
   "private": true,
   "debug": {
     "env": {
@@ -14,21 +17,34 @@
   "scripts": {
     "app:dev": "tsc && concurrently vite \" electron .\" \"tsc -w\"",
     "dev": "vite",
-    "build": "tsc && vite build && electron-builder -w",
+    "build": "tsc && vite build && electron-builder",
     "preview": "vite preview",
     "pree2e": "vite build --mode=test",
     "e2e": "playwright test"
+  },
+  "build": {
+    "appId": "cloudmanager.application",
+    "protocols": {
+      "name": "cloudmanager",
+      "schemes": ["cloudmanager"]
+    },
+    "productName": "Cloud Manager",
+    "asar": true,
+    "directories": {
+      "buildResources": "assets",
+      "output": "release/${version}"
+    }
   },
   "dependencies": {
     "electron-updater": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "electron": "^28.1.0",
     "axios": "^1.6.8",
     "vite": "^5.0.10",
     "react-router-dom": "^6.2.0"
   },
   "devDependencies": {
+    "electron": "^28.1.0",
     "@playwright/test": "^1.37.1",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
