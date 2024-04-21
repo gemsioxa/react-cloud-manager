@@ -54,9 +54,11 @@ async function createWindow() {
     height: 720,
     width: 1280,
     titleBarStyle: 'hiddenInset',
+    nodeIntegration: true,
     webPreferences: {
       preload,
-      devTools: url ? true: false,
+      // devTools: url ? true: false,
+      devTools: true
       // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
       // nodeIntegration: true,
 
@@ -72,7 +74,9 @@ async function createWindow() {
       submenu: [
         {
           label: 'О приложении',
-          click() { win.webContents.send("about"); }
+          click: () => {
+            shell.openExternal('http://electronjs.org')
+          }
         },
         {
           label: 'Пользовательское соглашение',
@@ -81,7 +85,7 @@ async function createWindow() {
         { type: 'separator' },
         {
           label: 'Закрыть приложение',
-          click() { win.webContents.send("exit"); }
+          role: 'quit'
       },
       ]
     },
@@ -109,6 +113,7 @@ async function createWindow() {
     win.webContents.openDevTools()
   } else {
     win.loadFile(indexHtml)
+    win.webContents.openDevTools()
   }
 
   // Test actively push message to the Electron-Renderer
@@ -124,9 +129,15 @@ async function createWindow() {
 
   // Apply electron-updater
   update(win)
+
+  ipcMain.on('open-external-link', (event, url) => {
+    shell.openExternal(url);
+  });
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  app.setAsDefaultProtocolClient("cloud-manager")
+}).then(createWindow);
 
 app.on('ready', () => {
 
@@ -153,6 +164,15 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+app.on('open-url', (event, data) => {
+  event.preventDefault();
+  // Handle the URL appropriately
+  console.log(`Received Data: ${data}`);
+  win.webContents.send('yandex-login-success', {
+    data
+  })
+});
 
 // New window example arg: new windows url
 ipcMain.handle('open-win', (_, arg) => {

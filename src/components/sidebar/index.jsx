@@ -15,25 +15,25 @@ export default function Sidebar() {
           </Link>
           <div className={SidebarCss.sidebarMainControls}>
             <NavLink
-              to={"/disk/1"}
+              to={"disk/1"}
               className={SidebarCss.sidebarMainControlsItem}
             >
               D1
             </NavLink>
             <NavLink
-              to={"/disk/2"}
+              to={"disk/2"}
               className={SidebarCss.sidebarMainControlsItem}
             >
               D2
             </NavLink>
             <NavLink
-              to={"/disk/3"}
+              to={"disk/3"}
               className={SidebarCss.sidebarMainControlsItem}
             >
               D3
             </NavLink>
             <NavLink
-              to={"/disk/4"}
+              to={"disk/4"}
               className={SidebarCss.sidebarMainControlsItem}
             >
               D4
@@ -43,7 +43,7 @@ export default function Sidebar() {
         <div className={SidebarCss.sidebarControls}>
           <NavLink
             className={SidebarCss.sidebarControlsSettings}
-            to={"/settings"}
+            to={"settings"}
           >
             <SettingsIcon />
           </NavLink>

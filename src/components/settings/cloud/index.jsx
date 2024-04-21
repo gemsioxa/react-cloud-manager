@@ -6,6 +6,15 @@ import MinusIcon from "@/components/icon/minus";
 import DeleteModal from "../modal/delete";
 
 const CloudDiskPlug = () => {
+  const onClickGoogleAuth = () => {
+    console.log('in development mode');
+    // window.ipcRenderer.send('open-external-link', 'https://google.com');
+  }
+
+  const onClickYandexAuth = () => {
+    window.ipcRenderer.send('open-external-link', 'http://localhost:3000/auth-with-yandex');
+  }
+
   return (
     <div className={CloudCss.cloudDiskPlug}>
       <div
@@ -18,11 +27,11 @@ const CloudDiskPlug = () => {
       <div className={CloudCss.cloudDiskPlugList}>
         <div className={CloudCss.cloudDiskPlugListItem}>
           Google
-          <PlusIcon className={CloudCss.cloudDiskPlugListItemIcon} />
+          <PlusIcon onClick={onClickGoogleAuth} className={CloudCss.cloudDiskPlugListItemIcon} />
         </div>
         <div className={CloudCss.cloudDiskPlugListItem}>
           Yandex
-          <PlusIcon className={CloudCss.cloudDiskPlugListItemIcon} />
+          <PlusIcon onClick={onClickYandexAuth} className={CloudCss.cloudDiskPlugListItemIcon} />
         </div>
       </div>
     </div>
