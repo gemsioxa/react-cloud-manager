@@ -1,10 +1,14 @@
 import React from "react";
 import DeleteCss from "./DeleteModal.module.css";
 import UI from "@/components/ui";
+import { useDispatch } from "react-redux";
+import { deleteDiskItem } from "../../../../store/accountsSlice";
 
 export default function DeleteModal(props) {
+  const dispatch = useDispatch();
   const onClickSubmit = () => {
     console.log("onClickSubmit");
+    dispatch(deleteDiskItem(props.token));
     props.onClickClose();
   };
 

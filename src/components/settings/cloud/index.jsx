@@ -4,6 +4,7 @@ import CloudCss from "./Cloud.module.css";
 import PlusIcon from "@/components/icon/plus";
 import MinusIcon from "@/components/icon/minus";
 import DeleteModal from "../modal/delete";
+import { useSelector } from "react-redux";
 
 const CloudDiskPlug = () => {
   const onClickGoogleAuth = () => {
@@ -38,7 +39,23 @@ const CloudDiskPlug = () => {
   );
 };
 
+const CloudDiskManageItem = (props) => {
+  return (
+    <div className={CloudCss.cloudDiskManageListItem}>
+      {props.type} ({props.disk.email})
+      <MinusIcon
+        onClick={() => props.onClickDelete(props.disk.token)}
+        className={CloudCss.cloudDiskManageListItemIcon}
+      />
+    </div>
+
+  )
+}
 const CloudDiskManage = (props) => {
+  const accounts = useSelector((store) => store.accounts);
+
+  console.log(accounts);
+
   return (
     <>
       <div className={CloudCss.cloudDiskManage}>
@@ -51,20 +68,11 @@ const CloudDiskManage = (props) => {
           Удаление дисков
         </div>
         <div className={CloudCss.cloudDiskManageList}>
-          <div className={CloudCss.cloudDiskManageListItem}>
-            Google (googleacc)
-            <MinusIcon
-              onClick={() => props.onClickDelete(1)}
-              className={CloudCss.cloudDiskManageListItemIcon}
-            />
-          </div>
-          <div className={CloudCss.cloudDiskManageListItem}>
-            Yandex (testacc)
-            <MinusIcon
-              onClick={() => props.onClickDelete(2)}
-              className={CloudCss.cloudDiskManageListItemIcon}
-            />
-          </div>
+          {accounts.accounts.yandex.map((item) => {
+            return (
+              <CloudDiskManageItem type={'Yandex'} disk={item} onClickDelete={props.onClickDelete} />
+            )
+          })}
         </div>
       </div>
     </>
@@ -74,8 +82,8 @@ const CloudDiskManage = (props) => {
 export default function Cloud() {
   const [deleteItem, setDeleteItem] = useState(null);
 
-  const onClickDelete = (id) => {
-    setDeleteItem(id);
+  const onClickDelete = (token) => {
+    setDeleteItem(token);
   };
 
   const onClickClose = () => {
@@ -84,7 +92,7 @@ export default function Cloud() {
 
   const elDeleteModal = useMemo(() => {
     if (deleteItem) {
-      return <DeleteModal id={deleteItem} onClickClose={onClickClose} />;
+      return <DeleteModal id={deleteItem} token={deleteItem} onClickClose={onClickClose} />;
     }
   }, [deleteItem]);
 

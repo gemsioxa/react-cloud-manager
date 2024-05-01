@@ -9,6 +9,8 @@ import Home from "./routes/home";
 import Settings from "./routes/settings";
 import RootLayout from "./routes/RootLayout";
 import Disk from "./routes/disk";
+import { Provider } from 'react-redux';
+import store from './store';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,7 +23,11 @@ const router = createBrowserRouter(
   )
 );
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />;
+    </Provider>
+  )
 }
 
 export default App;

@@ -30,6 +30,7 @@ import {
   SuccessStatus,
   GetUserDiskMetaData,
   GetUserDiskMeta,
+  YandexAPIType,
 } from "./types";
 
 // User disk 
@@ -68,6 +69,7 @@ const deleteResource = (
 
 // Get meta info about file or folder
 const getResource = (
+  token: string,
   path: string,
   data?: GetResourceData
 ): Promise<AxiosResponse<Resource>> => {
@@ -78,6 +80,9 @@ const getResource = (
         path,
         ...(data && { data }),
       },
+      headers: {
+        Authorization: `OAuth ${token}`
+      }
     }
   );
 };
@@ -324,3 +329,28 @@ const getAsyncOperationStatus = (
     }
   );
 };
+
+export default {
+  getUserDiskMeta,
+  deleteResource,
+  getResource,
+  patchResource,
+  putResource,
+  postResourceCopy,
+  getResourceDownload,
+  getResourceFiles,
+  getResourceLastUploaded,
+  replaceResource,
+  getPublishedResourceList,
+  publishResource,
+  unpublishResource,
+  getResourceUploadLink,
+  uploadResourceWithUrl,
+  getPublicResourceMeta,
+  getPublicResourceDownloadLink,
+  saveResourceToDownloads,
+  emptyBin,
+  getBinResources,
+  restoreBinResources,
+  getAsyncOperationStatus,
+} as YandexAPIType;

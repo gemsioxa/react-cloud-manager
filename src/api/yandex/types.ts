@@ -1,3 +1,5 @@
+import { AxiosResponse } from "axios";
+
 export type SuccessRequest = {
     href: string;
     method: string;
@@ -273,3 +275,77 @@ export type GetAsyncOperationStatusData = {
     operation_id: string;
     fields?: string;
 }
+
+export type YandexAPIType = {
+    getUserDiskMeta(
+        data?: GetUserDiskMetaData
+      ): Promise<AxiosResponse<GetUserDiskMeta>>;
+    deleteResource(
+        path: string,
+        data?: DeleteResourceData
+      ): Promise<AxiosResponse<void>>;
+    getResource(
+        path: string,
+        data?: GetResourceData
+      ): Promise<AxiosResponse<Resource>>;
+    patchResource(
+        path: string,
+        data?: PatchResourceData
+      ): Promise<AxiosResponse<Resource>>;
+    putResource(
+        path: string,
+        data?: PutResourceData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    postResourceCopy(
+        data: PostResourceCopyData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    getResourceDownload(
+        path: string,
+        data?: GetResourceDownloadData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    getResourceFiles(
+        data?: GetResourceFilesData
+      ): Promise<AxiosResponse<GetResourceFiles>>;
+    getResourceLastUploaded(
+        data?: GetResourceLastUploadedData
+      ): Promise<AxiosResponse<GetResourceLastUploaded>>;
+    replaceResource(
+        data: ReplaceResourceData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    getPublishedResourceList(
+        data?: GetPublishedResourceListData
+      ): Promise<AxiosResponse<GetPublishedResourceList>>;
+    publishResource(
+        data: PublishResourceData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    unpublishResource(
+        data: UnpublishResourceData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    getResourceUploadLink(
+        data: GetResourceUploadLinkData
+      ): Promise<AxiosResponse<GetResourceUploadLink>>;
+    uploadResourceWithUrl(
+        data: UploadResourceWithUrlData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    getPublicResourceMeta(
+        data: GetPublicResourceMetaData
+      ): Promise<AxiosResponse<Request>>;
+    getPublicResourceDownloadLink(
+        data: GetPublicResourceMetaData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    saveResourceToDownloads(
+        data: SaveResourceToDownloadsData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    emptyBin(
+        data?: EmptyBinData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    getBinResources(
+        data: GetBinResourcesData
+      ): Promise<AxiosResponse<Resource>>;
+    restoreBinResources(
+        data: RestoreBinResourcesData
+      ): Promise<AxiosResponse<SuccessRequest>>;
+    getAsyncOperationStatus(
+        data: GetAsyncOperationStatusData
+      ): Promise<AxiosResponse<SuccessStatus>>;
+};

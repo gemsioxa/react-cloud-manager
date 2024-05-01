@@ -4,8 +4,22 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import SidebarCss from "./Sidebar.module.css";
 import SettingsIcon from "@/components/icon/settings";
+import { useSelector } from "react-redux";
+
+const SidebarItem = ({ item, ...props }) => {
+  return (
+    <NavLink
+      to={`disk/${item.token}`}
+      className={SidebarCss.sidebarMainControlsItem}
+    >
+      {item.token.slice(0, 2)}
+    </NavLink>
+  )
+}
 
 export default function Sidebar() {
+  const yaAccounts = useSelector((store) => store.accounts.accounts.yandex);
+  console.log('ya', yaAccounts);
   return (
     <div className={SidebarCss.container}>
       <div className={SidebarCss.sidebar}>
@@ -14,7 +28,10 @@ export default function Sidebar() {
             <LogoIcon className={SidebarCss.sidebarMainLogo} />
           </Link>
           <div className={SidebarCss.sidebarMainControls}>
-            <NavLink
+            {yaAccounts.map((item) => {
+              return <SidebarItem key={item.token} item={item} />
+            })}
+            {/* <NavLink
               to={"disk/1"}
               className={SidebarCss.sidebarMainControlsItem}
             >
@@ -25,19 +42,7 @@ export default function Sidebar() {
               className={SidebarCss.sidebarMainControlsItem}
             >
               D2
-            </NavLink>
-            <NavLink
-              to={"disk/3"}
-              className={SidebarCss.sidebarMainControlsItem}
-            >
-              D3
-            </NavLink>
-            <NavLink
-              to={"disk/4"}
-              className={SidebarCss.sidebarMainControlsItem}
-            >
-              D4
-            </NavLink>
+            </NavLink> */}
           </div>
         </div>
         <div className={SidebarCss.sidebarControls}>
