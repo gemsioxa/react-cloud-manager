@@ -278,6 +278,7 @@ export type GetAsyncOperationStatusData = {
 
 export type YandexAPIType = {
     getUserDiskMeta(
+        token: string,
         data?: GetUserDiskMetaData
       ): Promise<AxiosResponse<GetUserDiskMeta>>;
     deleteResource(
@@ -285,6 +286,7 @@ export type YandexAPIType = {
         data?: DeleteResourceData
       ): Promise<AxiosResponse<void>>;
     getResource(
+        token: string,
         path: string,
         data?: GetResourceData
       ): Promise<AxiosResponse<Resource>>;

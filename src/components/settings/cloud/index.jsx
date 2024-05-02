@@ -70,7 +70,7 @@ const CloudDiskManage = (props) => {
         <div className={CloudCss.cloudDiskManageList}>
           {accounts.accounts.yandex.map((item) => {
             return (
-              <CloudDiskManageItem type={'Yandex'} disk={item} onClickDelete={props.onClickDelete} />
+              <CloudDiskManageItem key={item.token} type={'Yandex'} disk={item} onClickDelete={props.onClickDelete} />
             )
           })}
         </div>

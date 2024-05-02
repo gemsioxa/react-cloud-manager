@@ -12,14 +12,15 @@ const SidebarItem = ({ item, ...props }) => {
       to={`disk/${item.token}`}
       className={SidebarCss.sidebarMainControlsItem}
     >
-      {item.token.slice(0, 2)}
+      {item.name.split(' ')[0].slice(0, 1)}
+      {item.name.split(' ')[1] && item.name.split(' ')[1].slice(0, 1)}
     </NavLink>
   )
 }
 
 export default function Sidebar() {
   const yaAccounts = useSelector((store) => store.accounts.accounts.yandex);
-  console.log('ya', yaAccounts);
+  // console.log('ya', yaAccounts);
   return (
     <div className={SidebarCss.container}>
       <div className={SidebarCss.sidebar}>
@@ -31,18 +32,6 @@ export default function Sidebar() {
             {yaAccounts.map((item) => {
               return <SidebarItem key={item.token} item={item} />
             })}
-            {/* <NavLink
-              to={"disk/1"}
-              className={SidebarCss.sidebarMainControlsItem}
-            >
-              D1
-            </NavLink>
-            <NavLink
-              to={"disk/2"}
-              className={SidebarCss.sidebarMainControlsItem}
-            >
-              D2
-            </NavLink> */}
           </div>
         </div>
         <div className={SidebarCss.sidebarControls}>
@@ -52,7 +41,7 @@ export default function Sidebar() {
           >
             <SettingsIcon />
           </NavLink>
-          <div className={SidebarCss.sidebarControlsVersion}>v. 0.0.1</div>
+          <div className={SidebarCss.sidebarControlsVersion}>v. 0.1.0</div>
         </div>
       </div>
     </div>

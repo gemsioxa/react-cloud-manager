@@ -37,6 +37,7 @@ import {
 
 // Get user disk metadata 
 const getUserDiskMeta = (
+  token?: string,
   data?: GetUserDiskMetaData
 ): Promise<AxiosResponse<GetUserDiskMeta>> => {
   return yandexHttpClient.get<GetUserDiskMeta>(
@@ -45,6 +46,9 @@ const getUserDiskMeta = (
       params: {
         ...(data?.fields && { fields: data.fields })
       },
+      headers: {
+        Authorization: `OAuth ${token}`
+      }
     }
   );
 };

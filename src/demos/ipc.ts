@@ -1,3 +1,5 @@
+import api from "@/api";
+
 window.ipcRenderer.on('main-process-message', (_event, ...args) => {
   console.log('[Receive Main-process message]:', ...args)
 })
@@ -9,28 +11,32 @@ window.ipcRenderer.on('yandex-login-success', (event, data) => {
   console.log(data);
   console.log('token', token);
   const accounts = localStorage.getItem('accounts');
-  if (accounts) {
-    const newAccount: AccountsType = {
-      ...JSON.parse(accounts),
-      yandex: [...[{token: token, avatar: '', email: '', name: 'Name'}]]
-    }
-
-    localStorage.setItem('accounts', JSON.stringify(newAccount));
-
-  } else {
-    const newAccount: AccountsType = {
-      yandex: [
-        {
-          token: token,
-          avatar: '',
-          email: '',
-          name: 'Name',
+  api.yandex.getUserDiskMeta(token)
+    .then((response) => {
+      if (accounts) {
+        const newAccount: AccountsType = {
+          ...JSON.parse(accounts),
+          yandex: [...JSON.parse(accounts).yandex, ...[{token: token, avatar: '', email: response.data.user.login, name: response.data.user.display_name}]]
         }
-      ]
-    }
-    localStorage.setItem('accounts', JSON.stringify(newAccount));
+    
+        localStorage.setItem('accounts', JSON.stringify(newAccount));
+    
+      } else {
+        const newAccount: AccountsType = {
+          yandex: [
+            {
+              token: token,
+              avatar: '',
+              email: response.data.user.login,
+              name: response.data.user.display_name,
+            }
+          ]
+        }
+        localStorage.setItem('accounts', JSON.stringify(newAccount));
+    
+      }
 
-  }
+    })
 })
 
 type AccountsType = {
