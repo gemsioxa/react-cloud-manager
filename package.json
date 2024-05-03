@@ -1,6 +1,6 @@
 {
   "name": "cloud-manager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist-electron/main/index.js",
   "description": "Cloud manager",
   "author": {
@@ -41,7 +41,9 @@
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "electron-updater": "^6.1.1",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-contextmenu": "^2.14.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.1",
     "react-router-dom": "^6.2.0",
