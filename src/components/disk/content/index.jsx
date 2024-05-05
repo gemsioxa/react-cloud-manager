@@ -5,6 +5,7 @@ import ContentCss from './Content.module.css'
 import api from '@/api'
 import { useParams } from 'react-router-dom'
 import { ContextMenu, ContextMenuTrigger, MenuItem } from 'react-contextmenu'
+import ArrowLeftIcon from '../../icon/arrowLeft'
 
 const Item = (props) => {
     const onClickItem = () => {
@@ -28,28 +29,66 @@ export default function Content(props) {
     const { id } = useParams();
     const [items, setItems] = useState([]);
     const [currentPath, setCurrentPath] = useState('/');
+    const [isLoadingNewPath, setIsLoadingNewPath] = useState(false);
+    const [isCreatingNewPath, setIsCreatingNewPath] = useState(false);
 
     useEffect(() => {
-        api.yandex.getResource(id, currentPath)
-            .then((resp) => {
-                setItems(resp.data._embedded.items);
-            })
+        if (isLoadingNewPath) {
+            api.yandex.getResource(id, currentPath)
+                .then((resp) => {
+                    setItems(resp.data._embedded.items);
+                    setIsLoadingNewPath(false);
+                    setIsCreatingNewPath(false);
+                })
+                .catch(() => {
+                    setIsLoadingNewPath(false);
+                    setIsCreatingNewPath(false);
+                });
+        }
+    }, [isLoadingNewPath]);
+
+    useEffect(() => {
+        setIsLoadingNewPath(true);
     }, [id, currentPath]);
 
     const updatePath = (newPath) => {
-        console.log('update', newPath);
-        setCurrentPath((prev) => `${prev}${newPath}/`);
+        if (!isLoadingNewPath) {
+            setCurrentPath((prev) => `${prev}${newPath}/`);
+        }
     }
 
     const handleDownload = (e, data, target) => {
         console.log(e, data, target);
     };
 
+    const onClickReturn = () => {
+        if (!isLoadingNewPath) {
+            const newPath = currentPath.split('/');
+            const pathLength = newPath.length;
+
+            if (pathLength <= 3) {
+                setCurrentPath('/');
+            }
+            if (pathLength >= 4) {
+                newPath.pop();
+                newPath.pop();
+                setCurrentPath(newPath.join('/') + '/');
+            }
+        }
+    };
+
     return (
         <div className={ContentCss.content}>
-            {items.map((item) => {
-                return <Item updatePath={updatePath} key={item.resource_id} item={item} />
-            })}
+            <div className={ContentCss.contentControls}>
+                <div className={ContentCss.contentControlsIcon} onClick={onClickReturn}>
+                    <ArrowLeftIcon />
+                </div>
+            </div>
+            <div className={ContentCss.contentContainer}>
+                {items.map((item) => {
+                    return <Item updatePath={updatePath} key={item.resource_id} item={item} />
+                })}
+            </div>
             <ContextMenu className={ContentCss.context} id='yandex_item'>
                 <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleDownload}>
                     Some 1

@@ -20,7 +20,7 @@ const SidebarItem = ({ item, ...props }) => {
 
 export default function Sidebar() {
   const yaAccounts = useSelector((store) => store.accounts.accounts.yandex);
-  // console.log('ya', yaAccounts);
+
   return (
     <div className={SidebarCss.container}>
       <div className={SidebarCss.sidebar}>

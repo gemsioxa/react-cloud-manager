@@ -1,9 +1,42 @@
 .content {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: auto;
-    padding: 24px;
-    column-gap: 8px;
+
+    &__controls {
+        display: flex;
+        padding: 4px 12px;
+        background-color: var(--gohan);
+        border-top: 1px dashed var(--backdrop);
+        box-shadow: 0 4px 4px 0 var(--backdrop);
+
+        &-icon {
+            background-color: var(--goku);
+            padding: 2px 8px;
+            border-radius: 4px;
+            height: 26px;
+            cursor: pointer;
+
+            svg {
+                fill: var(--bulma);
+            }
+
+            &:hover {
+                svg {
+                    fill: var(--trunks);
+                }
+            }
+
+            &:active {
+                box-shadow: 0 0 4px 0 var(--backdrop);
+            }
+        }
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: auto;
+        padding: 24px;
+        column-gap: 8px;
+    }
 
     &_item {
         display: flex;

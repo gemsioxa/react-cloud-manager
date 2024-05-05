@@ -54,8 +54,6 @@ const CloudDiskManageItem = (props) => {
 const CloudDiskManage = (props) => {
   const accounts = useSelector((store) => store.accounts);
 
-  console.log(accounts);
-
   return (
     <>
       <div className={CloudCss.cloudDiskManage}>

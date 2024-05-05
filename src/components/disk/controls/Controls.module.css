@@ -4,10 +4,10 @@
     padding: 8px;
     gap: 8px;
     background-color: var(--gohan);
-    box-shadow: 0 0 4px 0 var(--backdrop);
+    /* box-shadow: 0 0 4px 0 var(--backdrop); */
     
     &__title {
-
+        user-select: none;
     }
     &__list {
         display: flex;

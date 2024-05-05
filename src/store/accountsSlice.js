@@ -25,7 +25,6 @@ const accountsSlice = createSlice({
                     yandex: state.accounts.yandex || []
                 };
                 localStorage.setItem('accounts', JSON.stringify(newAccounts));
-                console.log('deleted', state);
             }
         },
     }
