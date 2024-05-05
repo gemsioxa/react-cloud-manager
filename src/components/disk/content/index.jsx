@@ -46,7 +46,15 @@ export default function Content(props) {
 
     useEffect(() => {
         setIsLoadingNewPath(true);
-    }, [id, currentPath]);
+    }, [currentPath]);
+
+    useEffect(() => {
+        if (currentPath === '/') {
+            setIsLoadingNewPath(true);
+        } else {
+            setCurrentPath('/');
+        }
+    }, [id]);
 
     const updatePath = (newPath) => {
         if (!isLoadingNewPath) {
@@ -57,6 +65,10 @@ export default function Content(props) {
     const handleDownload = (e, data, target) => {
         console.log(e, data, target);
     };
+
+    const handleUpdate = () => {
+        setIsLoadingNewPath(true);
+    }
 
     const onClickReturn = () => {
         if (!isLoadingNewPath) {
@@ -81,21 +93,37 @@ export default function Content(props) {
                     <ArrowLeftIcon />
                 </div>
             </div>
-            <div className={ContentCss.contentContainer}>
-                {items.map((item) => {
-                    return <Item updatePath={updatePath} key={item.resource_id} item={item} />
-                })}
-            </div>
+            <ContextMenuTrigger id='yandex_container'>
+                <div className={ContentCss.contentContainer}>
+                    {items.map((item) => {
+                        return <Item updatePath={updatePath} key={item.resource_id} item={item} />
+                    })}
+                </div>
+            </ContextMenuTrigger>
             <ContextMenu className={ContentCss.context} id='yandex_item'>
                 <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleDownload}>
-                    Some 1
+                    Open
                 </MenuItem>
                 <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleDownload}>
-                    Some 2
+                    Rename
+                </MenuItem>
+                <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleDownload}>
+                    Get info
+                </MenuItem>
+                <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleDownload}>
+                    Delete
+                </MenuItem>
+            </ContextMenu>
+            <ContextMenu className={ContentCss.context} id='yandex_container'>
+                <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleDownload}>
+                    Create folder
+                </MenuItem>
+                <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleUpdate}>
+                    Update
                 </MenuItem>
                 <MenuItem divider />
                 <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleDownload}>
-                    Some 3
+                    Get info
                 </MenuItem>
             </ContextMenu>
         </div>
