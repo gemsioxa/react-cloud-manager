@@ -6,7 +6,6 @@ const FolderIcon = (props) => (
     {...baseProps}
     {...props}
     viewBox="0 0 1024 1024"
-    className="icon"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
   >

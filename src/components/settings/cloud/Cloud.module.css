@@ -75,6 +75,18 @@
                     & path {
                         fill: var(--bulma);
                     }
+
+                    &-disabled {
+                        cursor: not-allowed;
+
+                        & path {
+                            fill: var(--trunks);
+                        }
+
+                        & polygon {
+                            fill: var(--trunks);
+                        }
+                    }
                 }
             }
         }

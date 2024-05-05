@@ -16,7 +16,7 @@ const Item = (props) => {
 
     return (
         <ContextMenuTrigger id='yandex_item'>
-            <div className={ContentCss.contentItem} onClick={onClickItem}>
+            <div className={`${ContentCss.contentItem} ${props.item.type === 'dir' ? ContentCss.contentItemFolder : ContentCss.contentItemFile}`} onClick={onClickItem}>
                 {props.item.type === 'dir' ? <FolderIcon /> : <FileIcon />}
                 <span className={ContentCss.contentItemTitle}>
                     {props.item.name}
@@ -30,7 +30,6 @@ export default function Content(props) {
     const [items, setItems] = useState([]);
     const [currentPath, setCurrentPath] = useState('/');
     const [isLoadingNewPath, setIsLoadingNewPath] = useState(false);
-    const [isCreatingNewPath, setIsCreatingNewPath] = useState(false);
 
     useEffect(() => {
         if (isLoadingNewPath) {
@@ -38,11 +37,9 @@ export default function Content(props) {
                 .then((resp) => {
                     setItems(resp.data._embedded.items);
                     setIsLoadingNewPath(false);
-                    setIsCreatingNewPath(false);
                 })
                 .catch(() => {
                     setIsLoadingNewPath(false);
-                    setIsCreatingNewPath(false);
                 });
         }
     }, [isLoadingNewPath]);

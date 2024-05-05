@@ -4,7 +4,6 @@
         display: flex;
         padding: 4px 12px;
         background-color: var(--gohan);
-        border-top: 1px dashed var(--backdrop);
         box-shadow: 0 4px 4px 0 var(--backdrop);
 
         &-icon {
@@ -20,7 +19,7 @@
 
             &:hover {
                 svg {
-                    fill: var(--trunks);
+                    fill: var(--gohan);
                 }
             }
 
@@ -52,7 +51,13 @@
         
 
         &:hover {
-            background-color: var(--ghost);
+            background-color: var(--hover);
+            color: var(--popo);
+        }
+
+        &__file:hover path {
+            stroke: var(--gohan);
+            fill: var(--gohan);
         }
 
         & svg {
