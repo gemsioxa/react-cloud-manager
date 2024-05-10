@@ -7,11 +7,6 @@ import DeleteModal from "../modal/delete";
 import { useSelector } from "react-redux";
 
 const CloudDiskPlug = () => {
-  // const onClickGoogleAuth = () => {
-  //   console.log('in development mode');
-  //   // window.ipcRenderer.send('open-external-link', 'https://google.com');
-  // }
-
   const onClickYandexAuth = () => {
     window.ipcRenderer.send('open-external-link', 'http://localhost:3000/auth-with-yandex');
   }

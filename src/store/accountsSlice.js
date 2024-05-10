@@ -10,7 +10,7 @@ const accountsSlice = createSlice({
     name: 'accounts',
     initialState,
     reducers: {
-        update: (state, action) => {
+        update: (state) => {
             const accountList = localStorage.getItem('accounts');
             if (accountList) {
                 state.accounts = JSON.parse(accountList);
@@ -28,7 +28,7 @@ const accountsSlice = createSlice({
             }
         },
     }
-})
+});
 
 export const { update, deleteDiskItem } = accountsSlice.actions;
 

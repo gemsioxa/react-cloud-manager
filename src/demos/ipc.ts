@@ -1,12 +1,14 @@
 import api from "@/api";
+// @ts-ignore
+import store from '@/store';
+// @ts-ignore
+import { update } from '@/store/accountsSlice';
 
 window.ipcRenderer.on('main-process-message', (_event, ...args) => {
   console.log('[Receive Main-process message]:', ...args)
 })
 
 window.ipcRenderer.on('yandex-login-success', (event, data) => {
-  // TODO: дописать обработку получения токена и записи его в общий 
-  // TODO: список подключенных аккаунтов
   const token = JSON.stringify(data).split('://access_token=%22')[1].slice(0, -5);
   console.log(data);
   console.log('token', token);
@@ -35,8 +37,11 @@ window.ipcRenderer.on('yandex-login-success', (event, data) => {
         localStorage.setItem('accounts', JSON.stringify(newAccount));
     
       }
-
     })
+    .then(() => {
+      store.dispatch(update())
+    })
+
 })
 
 type AccountsType = {
