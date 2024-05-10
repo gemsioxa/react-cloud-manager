@@ -41,7 +41,7 @@ export default function Sidebar() {
           >
             <SettingsIcon />
           </NavLink>
-          <div className={SidebarCss.sidebarControlsVersion}>v. 0.1.0</div>
+          <div className={SidebarCss.sidebarControlsVersion}>v. 0.1.3</div>
         </div>
       </div>
     </div>
