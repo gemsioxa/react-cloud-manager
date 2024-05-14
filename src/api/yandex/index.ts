@@ -57,6 +57,7 @@ const getUserDiskMeta = (
 
 // Delete file or folder
 const deleteResource = (
+  token: string,
   path: string,
   data?: DeleteResourceData
 ): Promise<AxiosResponse<void>> => {
@@ -67,6 +68,9 @@ const deleteResource = (
         path,
         ...(data && { data }),
       },
+      headers: {
+        Authorization: `OAuth ${token}`
+      }
     }
   );
 };
@@ -107,12 +111,17 @@ const patchResource = (
 
 // Create folder
 const putResource = (
-  path: string,
-  data?: PutResourceData
+  token: string,
+  data: PutResourceData
 ): Promise<AxiosResponse<SuccessRequest>> => {
   return yandexHttpClient.put<SuccessRequest>(
-    "https://cloud-api.yandex.net/v1/disk/resources",
-    data
+    `https://cloud-api.yandex.net/v1/disk/resources/?path=${data.path}`,
+    undefined,
+    {
+      headers: {
+        Authorization: `OAuth ${token}`
+      }
+    }
   );
 };
 

@@ -77,7 +77,7 @@
 .context {
     background-color: var(--gohan);
     border-radius: 8px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 2px var(--trunks);
     overflow: hidden;
     min-width: 120px;
 
@@ -88,6 +88,15 @@
 
         &:hover {
             background-color: var(--goku);
+        }
+
+        &-delete {
+            background-color: var(--dodoria-10);
+            color: var(--goten);
+
+            &:hover {
+                background-color: var(--dodoria-100);
+            }
         }
     }
 }

@@ -129,6 +129,7 @@ export type PatchResourceData = {
 };
 
 export type PutResourceData = {
+    path: string;
     fields?: string;
 };
 
@@ -282,6 +283,7 @@ export type YandexAPIType = {
         data?: GetUserDiskMetaData
       ): Promise<AxiosResponse<GetUserDiskMeta>>;
     deleteResource(
+        token: string,
         path: string,
         data?: DeleteResourceData
       ): Promise<AxiosResponse<void>>;
@@ -295,8 +297,8 @@ export type YandexAPIType = {
         data?: PatchResourceData
       ): Promise<AxiosResponse<Resource>>;
     putResource(
-        path: string,
-        data?: PutResourceData
+        token: string,
+        data: PutResourceData
       ): Promise<AxiosResponse<SuccessRequest>>;
     postResourceCopy(
         data: PostResourceCopyData
