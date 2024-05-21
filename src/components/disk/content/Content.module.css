@@ -1,4 +1,10 @@
 .content {
+    background-color: transparent;
+    min-height: 80vh;
+
+    &__context {
+        min-height: 80vh;
+    }
 
     &__controls {
         display: flex;

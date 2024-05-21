@@ -314,6 +314,7 @@ export type YandexAPIType = {
         data?: GetResourceLastUploadedData
       ): Promise<AxiosResponse<GetResourceLastUploaded>>;
     replaceResource(
+        token: string,
         data: ReplaceResourceData
       ): Promise<AxiosResponse<SuccessRequest>>;
     getPublishedResourceList(

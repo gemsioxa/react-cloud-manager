@@ -181,11 +181,17 @@ const getResourceLastUploaded = (
 
 // Replace file or directory
 const replaceResource = (
+  token: string,
   data: ReplaceResourceData
 ): Promise<AxiosResponse<SuccessRequest>> => {
   return yandexHttpClient.post<SuccessRequest>(
-    "https://cloud-api.yandex.net/v1/disk/resources/move",
-    data
+    `https://cloud-api.yandex.net/v1/disk/resources/move?from=${data.from}&path=${data.path}`,
+    undefined,
+    {
+      headers: {
+        Authorization: `OAuth ${token}`
+      }
+    }
   );
 };
 
