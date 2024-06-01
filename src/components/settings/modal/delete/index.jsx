@@ -27,7 +27,7 @@ export default function DeleteModal(props) {
           действие <span>невозможно</span> будет отменить.
         </div>
         <div className={DeleteCss.deleteControls}>
-          <UI.Button onClick={props.onClickClose}>Отмена</UI.Button>
+          <UI.Button onClick={props.onClickClose} isSecondary>Отмена</UI.Button>
           <UI.Button onClick={onClickSubmit}>Удалить</UI.Button>
         </div>
       </UI.Container>

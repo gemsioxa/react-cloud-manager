@@ -7,6 +7,25 @@
     box-shadow: 0 0 2px 0 var(--piccolo);
     color: var(--goten);
     font-weight: bold;
+
+    &-secondary {
+        cursor: pointer;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        box-shadow: 0 0 2px 0 var(--beerus);
+        color: var(--goten);
+        font-weight: bold;
+        background-color: var(--beerus);
+                    
+        &:hover {
+            background-color: var(--beerus-hover);
+        }
+
+        &:active {
+            box-shadow: 0 0 2px 0 var(--beerus-hover);
+        }
+    }
 }
 
 .button:hover {

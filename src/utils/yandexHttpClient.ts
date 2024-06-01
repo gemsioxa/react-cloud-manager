@@ -13,9 +13,6 @@ const yandexHttpClient = axios.create({
 });
 
 const authInterceptor = (config: InternalAxiosRequestConfig) => {
-    // const token = localStorage.getItem('yandexToken');
-    // config.headers.Authorization = `OAuth ${token}`;
-
     return config;
 };
 

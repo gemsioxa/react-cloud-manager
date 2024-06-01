@@ -72,17 +72,17 @@ const Item = (props) => {
             </ContextMenuTrigger>
             <ContextMenu style={isDrag ? {display: 'none'} : ''} className={ContentCss.context} id={`yandex_item_${props.item.name}`}>
                 {props.item.type === 'dir' && <MenuItem className={ContentCss.contextItem} onClick={onClickItem}>
-                    Open
+                    Открыть
                 </MenuItem>}
                 <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}}>
-                    Rename
+                    Переименовать
                 </MenuItem>
                 <MenuItem className={`${ContentCss.contextItem} ${ContentCss.contextItemDelete}`} onClick={onClickDelete}>
-                    Delete
+                    Удалить
                 </MenuItem>
                 {props.item.type !== 'dir' && 
                 <MenuItem className={ContentCss.contextItem} onClick={onClickDownload}>
-                    Download
+                    Скачать
                 </MenuItem>}
             </ContextMenu>
         </>
@@ -236,11 +236,11 @@ export default function Content() {
         if (isCreateFolderOpen) {
             return (
                 <Modal onClickClose={onClickCancel} onClickSubmit={onClickSubmitCreateFolder}>
-                    <h3>Create folder</h3>
+                    <h3>Создание новой папки</h3>
                     <div>
                         <Input 
-                            title={'Enter folder name'} 
-                            placeholder={'New folder name'}
+                            title={'Введение название'} 
+                            placeholder={'Новая папки...'}
                             onChange={onChangeCreateFolderInput}
                             value={createFolderInput}
                         />
@@ -278,10 +278,10 @@ export default function Content() {
             </ContextMenuTrigger>
             <ContextMenu className={ContentCss.context} id='yandex_container'>
                 <MenuItem className={ContentCss.contextItem} onClick={handleCreateFolder}>
-                    Create
+                    Создать
                 </MenuItem>
                 <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}} onClick={handleUpdate}>
-                    Update
+                    Обновить
                 </MenuItem>
             </ContextMenu>
         </div>

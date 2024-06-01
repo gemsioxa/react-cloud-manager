@@ -15,10 +15,9 @@ export default function HomeInfo(props) {
         <div className={HomeInfoCss.blockInfo}>
           <div className={HomeInfoCss.blockInfoText}>
             <div>
-              <b>Fast</b>
+              <b>Быстрый</b>
             </div>
-            Some text to inspire user using this app. Some text to inspire user
-            using this app.
+            Быстрая работа приложения основана на том, что используется прямое взаимодействие с удаленным сервером хранилища без посредников.
           </div>
           <div className={HomeInfoCss.blockInfoButton}>
             <a href="#faq">
@@ -34,10 +33,9 @@ export default function HomeInfo(props) {
         <div className={HomeInfoCss.blockInfo}>
           <div className={HomeInfoCss.blockInfoText}>
             <div>
-              <b>Secure</b>
+              <b>Безопасность</b>
             </div>
-            Some text to inspire user using this app. Some text to inspire user
-            using this app.
+            Приложение не собирает никакие данные пользователя, а все операции с файлами и диском происходят напрямую с облачным хранилищем.
           </div>
           <div className={HomeInfoCss.blockInfoButton}>
             <a href="#faq">

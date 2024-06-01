@@ -1,5 +1,6 @@
 import React from 'react';
 import ModalCss from './Modal.module.css';
+import UI from "@/components/ui";
 
 const Modal = ({ children, onClickClose, onClickSubmit }) => {
   return (
@@ -9,18 +10,17 @@ const Modal = ({ children, onClickClose, onClickSubmit }) => {
                 {children}
             </div>
             <div className={ModalCss.modalContentControls}>
-                <button 
-                    className={`${ModalCss.modalContentControlsButton} ${ModalCss.modalContentControlsButtonCancel}`}
+                <UI.Button
                     onClick={onClickClose}
+                    isSecondary
                 >
-                    Cancel
-                </button>
-                <button 
-                    className={`${ModalCss.modalContentControlsButton} ${ModalCss.modalContentControlsButtonSubmit}`}
+                    Отменить
+                </UI.Button>
+                <UI.Button
                     onClick={onClickSubmit}
                 >
-                    Submit
-                </button>
+                    Создать
+                </UI.Button>
             </div>
         </div>
     </div>

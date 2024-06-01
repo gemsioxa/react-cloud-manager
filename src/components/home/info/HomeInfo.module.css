@@ -11,7 +11,7 @@
 
     &__image {
         display: flex;
-        width: 100%;
+        width: 640px;
         justify-content: center;
 
         & svg {

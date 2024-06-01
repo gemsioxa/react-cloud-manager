@@ -14,7 +14,6 @@
         display: flex;
         justify-content: center;
         padding: 25px;
-        border: 4px solid var(--piccolo);
         border-radius: 8px;
     
         &-item {
