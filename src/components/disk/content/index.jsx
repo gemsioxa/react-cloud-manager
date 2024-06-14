@@ -20,6 +20,11 @@ const Item = (props) => {
 
     const onClickDownload = (e, data, target) => {
         console.log(e, data, target);
+        props.onClickDownload(data);
+    };
+
+    const onClickRename = (e, data, target) => {
+        props.onClickRename(data);
     };
 
     const onClickDelete = () => {
@@ -74,25 +79,29 @@ const Item = (props) => {
                 {props.item.type === 'dir' && <MenuItem className={ContentCss.contextItem} onClick={onClickItem}>
                     Открыть
                 </MenuItem>}
-                <MenuItem className={ContentCss.contextItem} data={{foo: 'some'}}>
+                <MenuItem className={ContentCss.contextItem} data={{ path: props.item.path }} onClick={onClickRename}>
                     Переименовать
                 </MenuItem>
                 <MenuItem className={`${ContentCss.contextItem} ${ContentCss.contextItemDelete}`} onClick={onClickDelete}>
                     Удалить
                 </MenuItem>
                 {props.item.type !== 'dir' && 
-                <MenuItem className={ContentCss.contextItem} onClick={onClickDownload}>
+                <MenuItem className={ContentCss.contextItem} data={{ path: props.item.path }} onClick={onClickDownload}>
                     Скачать
                 </MenuItem>}
             </ContextMenu>
         </>
     )
 }
+
 export default function Content() {
     const { id } = useParams();
     const [items, setItems] = useState([]);
     const [currentPath, setCurrentPath] = useState('/');
     const [isLoadingNewPath, setIsLoadingNewPath] = useState(false);
+    const [isRenameOpen, setIsRenameOpen] = useState(false);
+    const [renameInput, setRenameInput] = useState('');
+    const [currentRenamePath, setCurrentRenamePath] = useState('');
     const [isCreateFolderOpen, setIsCreateFolderOpen] = useState(false);
     const [createFolderInput, setCreateFolderInput] = useState('');
     const [currentItemPath, setCurrentItemPath] = useState('');
@@ -133,14 +142,55 @@ export default function Content() {
         if (!isLoadingNewPath) {
             setCurrentPath((prev) => `${prev}${newPath}/`);
         }
-    }
+    };
 
     const handleUpdate = () => {
         setIsLoadingNewPath(true);
+    };
+
+    const onClickRename = (data) => {
+        setCurrentRenamePath(data.path);
+        setRenameInput(String(data.path).split('/').pop());
+        setIsRenameOpen(true);
+    };
+
+    const onChangeRenameInput = (value) => {
+        setRenameInput(value)
+    };
+
+    const onClickSubmitRename = () => {
+        const newNamePath = `${currentPath}${renameInput}`;
+        const renameData = {
+            from: currentRenamePath,
+            path: newNamePath,
+        };
+
+        api.yandex.replaceResource(id, renameData)
+            .then(() => {
+                setIsLoadingNewPath(true);
+            })
+            .then(() => {
+                setIsRenameOpen(false);
+                setRenameInput('');
+            })
     }
 
-    const handleDownload = (e, data, target) => {
-        console.log(e, data, target);
+    const onClickDownload = (data) => {
+        api.yandex.getResourceDownload(id, data.path)
+            .then((resp) => {
+                console.log(resp);
+                // const href = URL.createObjectURL(resp.data.href);
+
+                const link = document.createElement('a');
+                link.href = resp.data.href;
+                link.setAttribute('download', `${data.path.split('/').pop()}`);
+                document.body.appendChild(link);
+                link.click();
+
+                document.body.removeChild(link);
+                // URL.revokeObjectURL(href);
+
+            });
     };
 
     const handleCreateFolder = () => {
@@ -167,6 +217,8 @@ export default function Content() {
     const onClickCancel = () => {
         setIsCreateFolderOpen(false);
         setCreateFolderInput('');
+        setIsRenameOpen(false);
+        setCurrentRenamePath('');
     };
 
     const onClickSubmitCreateFolder = () => {
@@ -194,7 +246,6 @@ export default function Content() {
     };
 
     const onEndDrop = (value) => {
-        // TODO: send request to yandex server
         const from_folder = currentItemPath;
         const to_folder = value;
 
@@ -250,10 +301,29 @@ export default function Content() {
         }
     }, [isCreateFolderOpen, createFolderInput]);
 
+    const elRenameModal = useMemo(() => {
+        if (isRenameOpen) {
+            return (
+                <Modal onClickClose={onClickCancel} onClickSubmit={onClickSubmitRename}>
+                    <h3>Переименование</h3>
+                    <div>
+                        <Input 
+                            title={'Введение новое название'} 
+                            placeholder={'Новая папки...'}
+                            onChange={onChangeRenameInput}
+                            value={renameInput}
+                        />
+                    </div>
+                </Modal>
+            )
+        }
+    }, [isRenameOpen, currentRenamePath, renameInput]);
+
     return (
         <div 
             className={ContentCss.content}
         >
+            {elRenameModal}
             {elCreateFolderModal}
             <div className={ContentCss.contentControls}>
                 <div className={ContentCss.contentControlsIcon} onClick={onClickReturn}>
@@ -271,6 +341,8 @@ export default function Content() {
                                 deleteItem={onClickDelete}
                                 onCreateCurrentPath={onCreateCurrentPath}
                                 onEndDrop={onEndDrop}
+                                onClickRename={onClickRename}
+                                onClickDownload={onClickDownload}
                             />
                         )
                     })}

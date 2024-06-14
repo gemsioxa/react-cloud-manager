@@ -137,16 +137,20 @@ const postResourceCopy = (
 
 // Get download file link
 const getResourceDownload = (
+  token: string,
   path: string,
   data?: GetResourceDownloadData
 ): Promise<AxiosResponse<SuccessRequest>> => {
   return yandexHttpClient.get<SuccessRequest>(
-    "https://cloud-api.yandex.net/v1/disk/resources/download",
+    `https://cloud-api.yandex.net/v1/disk/resources/download/`,
     {
       params: {
         path,
         ...(data && { data }),
       },
+      headers: {
+        Authorization: `OAuth ${token}`
+      }
     }
   );
 };

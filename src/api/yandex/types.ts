@@ -304,6 +304,7 @@ export type YandexAPIType = {
         data: PostResourceCopyData
       ): Promise<AxiosResponse<SuccessRequest>>;
     getResourceDownload(
+        token: string,
         path: string,
         data?: GetResourceDownloadData
       ): Promise<AxiosResponse<SuccessRequest>>;
