@@ -168,10 +168,15 @@ app.on('activate', () => {
 app.on('open-url', (event, data) => {
   event.preventDefault();
   // Handle the URL appropriately
-  console.log(`Received Data: ${data}`);
-  win.webContents.send('yandex-login-success', {
-    data
-  })
+  if (data.split('://')[1].startsWith('google')) {
+    win.webContents.send('google-login-success', {
+      data
+    })
+  } else {
+    win.webContents.send('yandex-login-success', {
+      data
+    })
+  }
 });
 
 // New window example arg: new windows url

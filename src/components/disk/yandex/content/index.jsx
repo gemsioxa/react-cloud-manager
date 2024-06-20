@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import FolderIcon from '../../icon/folder'
-import FileIcon from '../../icon/file'
+import FolderIcon from '../../../icon/folder'
+import FileIcon from '../../../icon/file'
 import ContentCss from './Content.module.css'
 import api from '@/api'
 import { useParams } from 'react-router-dom'
 import { ContextMenu, ContextMenuTrigger, MenuItem } from 'react-contextmenu'
-import ArrowLeftIcon from '../../icon/arrowLeft'
+import ArrowLeftIcon from '../../../icon/arrowLeft'
 import Modal from '@/components/modal'
 import Input from '@/components/ui/input'
 
@@ -178,9 +178,6 @@ export default function Content() {
     const onClickDownload = (data) => {
         api.yandex.getResourceDownload(id, data.path)
             .then((resp) => {
-                console.log(resp);
-                // const href = URL.createObjectURL(resp.data.href);
-
                 const link = document.createElement('a');
                 link.href = resp.data.href;
                 link.setAttribute('download', `${data.path.split('/').pop()}`);
@@ -188,8 +185,6 @@ export default function Content() {
                 link.click();
 
                 document.body.removeChild(link);
-                // URL.revokeObjectURL(href);
-
             });
     };
 

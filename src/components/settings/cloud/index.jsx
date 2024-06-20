@@ -11,6 +11,10 @@ const CloudDiskPlug = () => {
     window.ipcRenderer.send('open-external-link', 'http://localhost:3000/auth-with-yandex');
   }
 
+  const onClickGoogleAuth = () => {
+    window.ipcRenderer.send('open-external-link', 'http://localhost:3000/auth-with-google');
+  }
+
   return (
     <div className={CloudCss.cloudDiskPlug}>
       <div
@@ -22,8 +26,8 @@ const CloudDiskPlug = () => {
       </div>
       <div className={CloudCss.cloudDiskPlugList}>
         <div className={CloudCss.cloudDiskPlugListItem}>
-          Google (development)
-          <PlusIcon className={`${CloudCss.cloudDiskPlugListItemIcon} ${CloudCss.cloudDiskManageListItemIconDisabled}`} />
+          Google
+          <PlusIcon onClick={onClickGoogleAuth} className={`${CloudCss.cloudDiskPlugListItemIcon}`} />
         </div>
         <div className={CloudCss.cloudDiskPlugListItem}>
           Yandex
@@ -37,7 +41,7 @@ const CloudDiskPlug = () => {
 const CloudDiskManageItem = (props) => {
   return (
     <div className={CloudCss.cloudDiskManageListItem}>
-      {props.type} ({props.disk.email})
+      {props.type} ({props.type === 'Google' ? props.disk.email.split('@')[0] : props.disk.email})
       <MinusIcon
         onClick={() => props.onClickDelete(props.disk.token)}
         className={CloudCss.cloudDiskManageListItemIcon}
@@ -61,9 +65,14 @@ const CloudDiskManage = (props) => {
           Удаление дисков
         </div>
         <div className={CloudCss.cloudDiskManageList}>
-          {accounts.accounts.yandex.map((item) => {
+          {accounts.accounts.yandex?.map((item) => {
             return (
               <CloudDiskManageItem key={item.token} type={'Yandex'} disk={item} onClickDelete={props.onClickDelete} />
+            )
+          })}
+          {accounts.accounts.google?.map((item) => {
+            return (
+              <CloudDiskManageItem key={item.token} type={'Google'} disk={item} onClickDelete={props.onClickDelete} />
             )
           })}
         </div>

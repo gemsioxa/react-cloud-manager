@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import DiskCss from './Disk.module.css'
-import DiskUI from '@/components/disk';
+import DiskYandexUI from '@/components/disk/yandex';
 import { useSelector } from 'react-redux';
 
 export default function Disk() {
@@ -11,8 +11,8 @@ export default function Disk() {
 
   return (
     <div className={DiskCss.disk}>
-      <DiskUI.Controls title={currentEmail} />
-      <DiskUI.Content />
+      <DiskYandexUI.Controls title={currentEmail} />
+      <DiskYandexUI.Content />
     </div>
   )
 }

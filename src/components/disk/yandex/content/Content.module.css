@@ -1,0 +1,108 @@
+.content {
+    background-color: transparent;
+    min-height: 80vh;
+
+    &__context {
+        min-height: 80vh;
+    }
+
+    &__controls {
+        display: flex;
+        padding: 4px 12px;
+        background-color: var(--gohan);
+        box-shadow: 0 4px 4px 0 var(--backdrop);
+
+        &-icon {
+            background-color: var(--goku);
+            padding: 2px 8px;
+            border-radius: 4px;
+            height: 26px;
+            cursor: pointer;
+
+            svg {
+                fill: var(--bulma);
+            }
+
+            &:hover {
+                svg {
+                    fill: var(--gohan);
+                }
+            }
+
+            &:active {
+                box-shadow: 0 0 4px 0 var(--backdrop);
+            }
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 24px;
+    }
+
+    &_item {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        user-select: none;
+        text-align: center;
+        width: max-content;
+        height: max-content;
+        padding: 8px;
+        border-radius: 8px;
+        max-width: 86px;
+        
+
+        &:hover {
+            background-color: var(--hover);
+            color: var(--popo);
+        }
+
+        &__file:hover path {
+            stroke: var(--gohan);
+            fill: var(--gohan);
+        }
+
+        & svg {
+            width: 90px;
+            height: 60px;
+        }
+
+        &__title {
+            margin: 0 auto;
+            max-width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.context {
+    background-color: var(--gohan);
+    border-radius: 8px;
+    box-shadow: 0 0 2px var(--trunks);
+    overflow: hidden;
+    min-width: 120px;
+
+    &__item {
+        cursor: pointer;
+        user-select: none;
+        padding: 4px 8px;
+
+        &:hover {
+            background-color: var(--goku);
+        }
+
+        &-delete {
+            background-color: var(--dodoria-10);
+            color: var(--goten);
+
+            &:hover {
+                background-color: var(--dodoria-100);
+            }
+        }
+    }
+}

@@ -14,9 +14,6 @@ const googleHttpClient = axios.create({
 });
 
 const authInterceptor = (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem('googleToken');
-    config.headers.Authorization = `Bearer ${token}`;
-
     return config;
 };
 

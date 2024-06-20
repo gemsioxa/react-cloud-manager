@@ -39,6 +39,7 @@
 
             &-item {
                 text-decoration: none;
+                overflow: hidden;
                 color: var(--bulma);
                 cursor: pointer;
                 display: flex;
